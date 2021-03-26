@@ -55,8 +55,22 @@ public class ApiUnitTest {
     }
 
     @Test
+    @DisplayName("문자를 숫자로 변환")
     public void parseInt() {
         String s = "123";
         Assertions.assertEquals(123, Integer.parseInt(s));
+    }
+
+    @Test
+    @DisplayName("+ 기준으로 문자열 자르기")
+    public void splitPlus() {
+        String s = "1+2";
+        String[] numbers = s.split("\\+");
+        Assertions.assertAll(
+                () -> Assertions.assertEquals(2, numbers.length),
+                () -> Assertions.assertEquals("1", numbers[0]),
+                () -> Assertions.assertEquals("2", numbers[1])
+        );
+
     }
 }
