@@ -2,11 +2,11 @@ package com.best.practice.service
 
 import org.junit.jupiter.api.*
 
-@DisplayName("Easy String Test")
-class StringCustomServiceTest {
+@DisplayName("01. Easy String Test")
+class StringWeek01Test {
 
-    private lateinit var fromReplace: String
-    private lateinit var fromSubstring: String
+    lateinit var fromReplace: String
+    lateinit var fromSubstring: String
 
     @BeforeEach
     fun init() {
@@ -44,4 +44,12 @@ class StringCustomServiceTest {
         print("test : ${num is Int}")
         Assertions.assertEquals("I Like Number To : 999", str)
     }
+
+
+    @Test
+    @DisplayName(" String template")
+    fun calculateAdd() {
+
+    }
+
 }
