@@ -27,4 +27,21 @@ class StringCustomServiceTest {
         var substring: String = fromSubstring.substring(0, 2)
         Assertions.assertEquals("go", substring)
     }
+
+    @Test
+    @DisplayName(" String template")
+    fun templateInnerTest(){
+        var num = 1000
+        val str = "I Like Number To : $num"
+        Assertions.assertEquals("I Like Number To : 1000", str)
+    }
+
+    @Test
+    @DisplayName(" String template")
+    fun templateBracatInnerTest(){
+        var num = 1000
+        val str = "I Like Number To : ${num.minus(1)}"
+        print("test : ${num is Int}")
+        Assertions.assertEquals("I Like Number To : 999", str)
+    }
 }
