@@ -13,22 +13,10 @@ public class StringCalculator {
 
     public int calc() {
         String operator = injectOperator();
-        String[] number = injectNumbers(operator);
-        if (number.length != 2) {
-            throw new IllegalArgumentException();
-        }
-        switch (operator) {
-            case "+":
-                return parseInt(number[0]) + parseInt(number[1]);
-            case "-":
-                return parseInt(number[0]) - parseInt(number[1]);
-            case "*":
-                return parseInt(number[0]) * parseInt(number[1]);
-            case "/":
-                return parseInt(number[0]) / parseInt(number[1]);
-            default:
-                throw new IllegalArgumentException();
-        }
+        String[] numbers = injectNumbers(operator);
+
+        checkNumberCount(numbers);
+        return calculate(operator, numbers);
     }
 
     public String injectOperator() {
@@ -60,5 +48,26 @@ public class StringCalculator {
 
     private int parseInt(String s) {
         return Integer.parseInt(s);
+    }
+
+    private void checkNumberCount(String[] numbers) {
+        if (numbers.length != 2) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    private int calculate(String operator, String[] numbers) {
+        switch (operator) {
+            case "+":
+                return parseInt(numbers[0]) + parseInt(numbers[1]);
+            case "-":
+                return parseInt(numbers[0]) - parseInt(numbers[1]);
+            case "*":
+                return parseInt(numbers[0]) * parseInt(numbers[1]);
+            case "/":
+                return parseInt(numbers[0]) / parseInt(numbers[1]);
+            default:
+                throw new IllegalArgumentException();
+        }
     }
 }
