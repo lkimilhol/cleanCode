@@ -13,37 +13,18 @@ public class StringCalculator {
 
     public int calc() {
         String operator = injectOperator();
-        String[] numbers = injectNumbers(operator);
+        String[] numbers = injectNumbers();
 
         checkNumberCount(numbers);
         return calculate(operator, numbers);
     }
 
     public String injectOperator() {
-        String s = this.getStringCalculation();
-        return s.replaceAll("[0-9]", "");
+        return this.getStringCalculation().replaceAll("[0-9]", "");
     }
 
-    public String[] injectNumbers(String operator) {
-        String s = this.getStringCalculation();
-        String newOp;
-        switch (operator) {
-            case "+":
-                newOp = "\\+";
-                break;
-            case "-":
-                newOp = "-";
-                break;
-            case "*":
-                newOp = "\\*";
-                break;
-            case "/":
-                newOp = "/";
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-        return s.split(newOp);
+    public String[] injectNumbers() {
+        return this.getStringCalculation().split("[+/*-]");
     }
 
     private int parseInt(String s) {
@@ -57,17 +38,6 @@ public class StringCalculator {
     }
 
     private int calculate(String operator, String[] numbers) {
-        switch (operator) {
-            case "+":
-                return parseInt(numbers[0]) + parseInt(numbers[1]);
-            case "-":
-                return parseInt(numbers[0]) - parseInt(numbers[1]);
-            case "*":
-                return parseInt(numbers[0]) * parseInt(numbers[1]);
-            case "/":
-                return parseInt(numbers[0]) / parseInt(numbers[1]);
-            default:
-                throw new IllegalArgumentException();
-        }
+        return Operator.calculate(operator, parseInt(numbers[0]), parseInt(numbers[1]));
     }
 }
