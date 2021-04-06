@@ -3,6 +3,8 @@ package stringCalculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Queue;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class StringCalculatorTest {
@@ -19,10 +21,10 @@ class StringCalculatorTest {
     @DisplayName("문자열에서 숫자 추출")
     void injectNumbers() {
         StringCalculator stringCalculator = new StringCalculator("1+2");
-        String[] numbers = stringCalculator.injectNumbers();
-        assertEquals(2, numbers.length);
-        assertEquals("1", numbers[0]);
-        assertEquals("2", numbers[1]);
+        Queue<Integer> numbers = stringCalculator.injectNumbers();
+        assertEquals(2, numbers.size());
+        assertEquals(1, numbers.poll());
+        assertEquals(2, numbers.poll());
     }
 
     @Test
@@ -69,8 +71,8 @@ class StringCalculatorTest {
     @DisplayName("정규식으로 숫자 추출")
     void injectNumberTest() {
         StringCalculator stringCalculator = new StringCalculator("1+2");
-        String[] numbers = stringCalculator.injectNumbers();
-        assertEquals(1, Integer.parseInt(numbers[0]));
-        assertEquals(2, Integer.parseInt(numbers[1]));
+        Queue<Integer> numbers = stringCalculator.injectNumbers();
+        assertEquals(1, numbers.poll());
+        assertEquals(2, numbers.poll());
     }
 }
