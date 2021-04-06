@@ -19,8 +19,7 @@ class StringCalculatorTest {
     @DisplayName("문자열에서 숫자 추출")
     void injectNumbers() {
         StringCalculator stringCalculator = new StringCalculator("1+2");
-        String operator = stringCalculator.injectOperator();
-        String[] numbers = stringCalculator.injectNumbers(operator);
+        String[] numbers = stringCalculator.injectNumbers();
         assertEquals(2, numbers.length);
         assertEquals("1", numbers[0]);
         assertEquals("2", numbers[1]);
@@ -56,5 +55,22 @@ class StringCalculatorTest {
         StringCalculator stringCalculator = new StringCalculator("4/2");
         int result = stringCalculator.calc();
         assertEquals(2, result);
+    }
+
+    @Test
+    @DisplayName("정규식으로 연산자 추출")
+    void injectOperatorTest() {
+        StringCalculator stringCalculator = new StringCalculator("1+2");
+        String s = stringCalculator.injectOperator();
+        assertEquals("+", s);
+    }
+
+    @Test
+    @DisplayName("정규식으로 숫자 추출")
+    void injectNumberTest() {
+        StringCalculator stringCalculator = new StringCalculator("1+2");
+        String[] numbers = stringCalculator.injectNumbers();
+        assertEquals(1, Integer.parseInt(numbers[0]));
+        assertEquals(2, Integer.parseInt(numbers[1]));
     }
 }
