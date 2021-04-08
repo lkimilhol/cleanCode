@@ -1,7 +1,9 @@
 package stringCalculator;
 
+import java.util.*;
+
 public class StringCalculator {
-    String stringCalculation;
+    private String stringCalculation;
 
     public StringCalculator(String stringCalculation) {
         this.stringCalculation = stringCalculation;
@@ -13,52 +15,31 @@ public class StringCalculator {
 
     public int calc() {
         String operator = injectOperator();
-        String[] number = injectNumbers(operator);
-        if (number.length != 2) {
-            throw new IllegalArgumentException();
-        }
-        switch (operator) {
-            case "+":
-                return parseInt(number[0]) + parseInt(number[1]);
-            case "-":
-                return parseInt(number[0]) - parseInt(number[1]);
-            case "*":
-                return parseInt(number[0]) * parseInt(number[1]);
-            case "/":
-                return parseInt(number[0]) / parseInt(number[1]);
-            default:
-                throw new IllegalArgumentException();
-        }
+        Queue<Integer> numbers = injectNumbers();
+
+        checkNumberCount(numbers);
+        return calculate(operator, numbers);
     }
 
     public String injectOperator() {
-        String s = this.getStringCalculation();
-        return s.replaceAll("[0-9]", "");
+        return this.getStringCalculation().replaceAll("[0-9]", "");
     }
 
-    public String[] injectNumbers(String operator) {
-        String s = this.getStringCalculation();
-        String newOp;
-        switch (operator) {
-            case "+":
-                newOp = "\\+";
-                break;
-            case "-":
-                newOp = "-";
-                break;
-            case "*":
-                newOp = "\\*";
-                break;
-            case "/":
-                newOp = "/";
-                break;
-            default:
-                throw new IllegalArgumentException();
+    public Queue<Integer> injectNumbers() {
+        String[] arr = this.getStringCalculation().split("[+/*-]");
+        Queue<Integer> numbers = new LinkedList<>();
+        numbers.add(Integer.parseInt(arr[0]));
+        numbers.add(Integer.parseInt(arr[1]));
+        return numbers;
+    }
+
+    private void checkNumberCount(Queue<Integer> numbers) {
+        if (numbers.size() != 2) {
+            throw new IllegalArgumentException();
         }
-        return s.split(newOp);
     }
 
-    private int parseInt(String s) {
-        return Integer.parseInt(s);
+    private int calculate(String operator, Queue<Integer> numbers) {
+        return Operator.calculate(operator, numbers.poll(), numbers.poll());
     }
 }
