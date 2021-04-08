@@ -3,7 +3,7 @@ package stringCalculator;
 import java.util.*;
 
 public class StringCalculator {
-    String stringCalculation;
+    private String stringCalculation;
 
     public StringCalculator(String stringCalculation) {
         this.stringCalculation = stringCalculation;
