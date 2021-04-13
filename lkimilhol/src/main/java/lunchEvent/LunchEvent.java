@@ -7,6 +7,7 @@ import java.util.Random;
 public class LunchEvent {
     private final int memberCnt;
     private final List<Member> memberList;
+    private Member botanist;
 
     public LunchEvent(int memberCnt) {
         this.memberCnt = memberCnt;
@@ -29,6 +30,10 @@ public class LunchEvent {
 
     private int getGroupNumber() {
         return this.memberList.size() / Constant.GROUP_CNT + 1;
+    }
+
+    protected boolean isBotanist() {
+        return this.memberCnt % Constant.GROUP_CNT == 0;
     }
 
     private String getMemberName(int idx) {
