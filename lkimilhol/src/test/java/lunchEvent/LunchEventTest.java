@@ -17,4 +17,12 @@ class LunchEventTest {
         List<Member> group = lunchEvent.choiceLunchGroup();
         Assertions.assertEquals(groupSize, group.size());
     }
+
+    @Test
+    @DisplayName("식물학자 체크")
+    void choiceBotanist() {
+        final int groupSize = 4;
+        LunchEvent lunchEvent = new LunchEvent(groupSize);
+        assertTrue(lunchEvent.isBotanist());
+    }
 }
