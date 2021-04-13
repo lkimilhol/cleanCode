@@ -23,6 +23,23 @@ class LunchEventTest {
     void choiceBotanist() {
         final int groupSize = 4;
         LunchEvent lunchEvent = new LunchEvent(groupSize);
-        assertTrue(lunchEvent.isBotanist());
+        assertFalse(lunchEvent.hasBotanist());
+    }
+
+    @Test
+    @DisplayName("전체 인원이 1인 경우 식물 학자 체크")
+    void selectMember() {
+        final int groupSize = 1;
+        LunchEvent lunchEvent = new LunchEvent(groupSize);
+        assertFalse(lunchEvent.hasBotanist());
+    }
+
+    @Test
+    @DisplayName("그룹 넘버 가져와보기")
+    void getCurrentGroupCnt() {
+        final int groupSize = 10;
+        LunchEvent lunchEvent = new LunchEvent(groupSize);
+        lunchEvent.choiceLunchGroup();
+        assertEquals(3, lunchEvent.getCurrentGroupCnt());
     }
 }
