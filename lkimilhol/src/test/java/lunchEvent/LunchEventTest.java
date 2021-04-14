@@ -9,6 +9,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LunchEventTest {
+
     @Test
     @DisplayName("랜덤 추출한 회원의 수가 의도한 수인지 체크")
     void memberListCnt() {
@@ -41,5 +42,12 @@ class LunchEventTest {
         LunchEvent lunchEvent = new LunchEvent(groupSize);
         lunchEvent.choiceLunchGroup();
         assertEquals(3, lunchEvent.getCurrentGroupCnt());
+    }
+
+    @Test
+    @DisplayName("잘못된 멤버 수")
+    void checkMemberCnt() {
+        final int groupSize = 0;
+        Assertions.assertThrows(IllegalArgumentException.class, () -> new LunchEvent(groupSize));
     }
 }

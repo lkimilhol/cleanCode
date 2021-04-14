@@ -11,6 +11,7 @@ public class LunchEvent {
     private Member botanist;
 
     public LunchEvent(int memberCnt) {
+        checkMemberCnt(memberCnt);
         this.memberCnt = memberCnt;
         memberList = new ArrayList<>();
     }
@@ -34,6 +35,12 @@ public class LunchEvent {
         for (int i = 1; i <= this.groupCnt; i++) {
             System.out.println("[" + i + "조]");
             printLunchMember(i);
+        }
+    }
+
+    private void checkMemberCnt(int memberCnt) {
+        if (memberCnt < 1 || memberCnt > 30) {
+            throw new IllegalArgumentException();
         }
     }
 
