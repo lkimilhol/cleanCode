@@ -14,4 +14,8 @@ public class Stock {
         ItemGenerator itemGenerator = new ItemGenerator();
         this.itemList = itemGenerator.getRandomNumberList();
     }
+
+    public List<Integer> getItemList() {
+        return itemList;
+    }
 }

@@ -3,16 +3,16 @@ package stock;
 import java.security.SecureRandom;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class ItemGenerator {
     private static SecureRandom random = new SecureRandom();
     private List<Integer> randomNumberList;
 
     ItemGenerator() {
-        randomNumberList = IntStream.generate(random::nextInt)
+        randomNumberList = random.ints()
                 .boxed()
                 .limit(100)
+                .map(Math::abs)
                 .collect(Collectors.toList());
     }
 
