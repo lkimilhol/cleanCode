@@ -16,4 +16,8 @@ public class StockProfit {
     public int getProfit() {
         return profit;
     }
+
+    public String toString() {
+        return itemIndex + "번 주식 , 수익 = " + profit + "원";
+    }
 }
