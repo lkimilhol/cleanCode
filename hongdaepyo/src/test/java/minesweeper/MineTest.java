@@ -47,4 +47,14 @@ class MineTest {
 
         Assertions.assertEquals(3, mineSet.size());
     }
+
+    @Test
+    public void hashCodeTest() {
+        Mine mine1 = new Mine(3, 3);
+        Mine mine2 = new Mine(3, 4);
+        Mine mine3 = new Mine(3, 3);
+
+        Assertions.assertNotEquals(mine1.hashCode(), mine2.hashCode());
+        Assertions.assertEquals(mine1.hashCode(), mine3.hashCode());
+    }
 }
