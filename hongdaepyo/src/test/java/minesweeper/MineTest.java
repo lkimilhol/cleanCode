@@ -41,5 +41,10 @@ class MineTest {
         mineSet.add(new Mine(1, 1));
 
         Assertions.assertEquals(1, mineSet.size());
+
+        mineSet.add(new Mine(1, 10));
+        mineSet.add(new Mine(2, 0));
+
+        Assertions.assertEquals(3, mineSet.size());
     }
 }

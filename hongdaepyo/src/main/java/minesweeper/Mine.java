@@ -1,6 +1,7 @@
 package minesweeper;
 
 import java.security.SecureRandom;
+import java.util.Objects;
 
 public class Mine {
     private static final SecureRandom random = new SecureRandom();
@@ -43,6 +44,6 @@ public class Mine {
 
     @Override
     public int hashCode() {
-        return row * 10 + col;
+        return Objects.hash(row, col);
     }
 }
