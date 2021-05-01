@@ -9,8 +9,13 @@ public class Mine {
     private int col;
 
     public Mine() {
-        this.row = Math.abs(random.nextInt(8));
-        this.col = Math.abs(random.nextInt(10));
+        this.row = Math.abs(random.nextInt(Constant.DEFAULT_HEIGHT));
+        this.col = Math.abs(random.nextInt(Constant.DEFAULT_WIDTH));
+    }
+
+    public Mine(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
     public int getRow() {
@@ -34,5 +39,10 @@ public class Mine {
         }
 
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return row * 10 + col;
     }
 }

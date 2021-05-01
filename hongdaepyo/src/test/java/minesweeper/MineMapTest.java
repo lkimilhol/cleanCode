@@ -14,39 +14,35 @@ public class MineMapTest {
 
     @Test
     public void getWidth() {
-        Assertions.assertEquals(10, mineMap.getWidth());
+        Assertions.assertEquals(Constant.DEFAULT_WIDTH, mineMap.getWidth());
     }
 
     @Test
     public void getHeight() {
-        mineMap = new MineMap(10, 8);
-        Assertions.assertEquals(8, mineMap.getHeight());
+        Assertions.assertEquals(Constant.DEFAULT_HEIGHT, mineMap.getHeight());
     }
 
     @Test
     public void mineGenerateAndGetMineList() {
-        int count = 10;
-        mineMap = new MineMap(10, 8);
-        mineMap.mineGenerate(count);
+        mineMap = new MineMap(Constant.DEFAULT_WIDTH, Constant.DEFAULT_HEIGHT);
+        mineMap.mineGenerate(Constant.DEFAULT_MINE_COUNT);
 
         Assertions.assertFalse(mineMap.getMineList().isEmpty());
-        Assertions.assertEquals(count, mineMap.getMineList().size());
+        Assertions.assertEquals(Constant.DEFAULT_MINE_COUNT, mineMap.getMineList().size());
     }
 
     @Test
     public void mineSetIntoMap() {
-        int count = 10;
-        mineMap = new MineMap(10, 8);
-        mineMap.mineGenerate(count);
+        mineMap = new MineMap(Constant.DEFAULT_WIDTH, Constant.DEFAULT_HEIGHT);
+        mineMap.mineGenerate(Constant.DEFAULT_MINE_COUNT);
 
         Assertions.assertDoesNotThrow(mineMap::mineSetIntoMap);
     }
 
     @Test
     public void printMineMap() {
-        int count = 10;
-        mineMap = new MineMap(10, 8);
-        mineMap.mineGenerate(count);
+        mineMap = new MineMap(Constant.DEFAULT_WIDTH, Constant.DEFAULT_HEIGHT);
+        mineMap.mineGenerate(Constant.DEFAULT_MINE_COUNT);
 
         Assertions.assertDoesNotThrow(mineMap::mineSetIntoMap);
         Assertions.assertDoesNotThrow(mineMap::printMineMap);

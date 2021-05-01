@@ -1,5 +1,6 @@
 package minesweeper;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -36,42 +37,56 @@ public class MineMap {
     }
 
     public void mineSetIntoMap() {
+        /* 지뢰가 있는 셀을 -1로 세팅 */
         mineList.forEach(mine -> map[mine.getRow()][mine.getCol()] = -1);
 
+        /* 지뢰 주위 셀의 숫자를 증가시킴 */
         mineList.forEach(mine -> {
             int row = mine.getRow();
             int col = mine.getCol();
 
-            int[] dx = {0, 0, 1, -1};
-            int[] dy = {1, -1, 0, 0};
-
-            for (int i = 0; i < dx.length; i++) {
-                int tempRow = row + dy[i];
-                int tempCol = col + dx[i];
-
-                if (tempRow >= 0 && tempRow < 8 && tempCol >= 0 && tempCol < 10) {
-                    if (map[tempRow][tempCol] > -1) {
-                        map[tempRow][tempCol]++;
-                    }
-                }
-            }
+            increaseNumberAroundMine(row, col);
         });
     }
 
     public void printMineMap() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (map[i][j] == -1) {
-                    sb.append("M").append(" ");
-                } else {
-                    sb.append(map[i][j]).append(" ");
+                if (isNotMineCell(i, j)) {
+                    builder.append(map[i][j]).append(Constant.A_SPACE);
+                }
+
+                if (isMineCell(i, j)){
+                    builder.append(Constant.MINE_SYMBOL).append(Constant.A_SPACE);
                 }
             }
-            sb.append("\n");
+            builder.append(Constant.NEW_LINE);
         }
 
-        System.out.println(sb);
+        System.out.println(builder);
     }
 
+    private boolean isNotMapBoundary(int row, int col) {
+        return row >= 0 && row < height && col >= 0 && col < width;
+    }
+
+    private boolean isMineCell(int row, int col) {
+        return map[row][col] == -1;
+    }
+
+    private boolean isNotMineCell(int row, int col) {
+        return map[row][col] > -1;
+    }
+
+    private void increaseNumberAroundMine(int row, int col) {
+        Arrays.stream(Direction.values()).forEach(direction -> {
+            int tempRow = row + direction.row;
+            int tempCol = col + direction.col;
+
+            if (isNotMapBoundary(tempRow, tempCol) && isNotMineCell(tempRow, tempCol)) {
+                map[tempRow][tempCol]++;
+            }
+        });
+    }
 }
