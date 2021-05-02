@@ -53,18 +53,22 @@ public class MineMap {
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (isNotMineCell(i, j)) {
-                    builder.append(map[i][j]).append(Constant.A_SPACE);
-                }
-
-                if (isMineCell(i, j)){
-                    builder.append(Constant.MINE_SYMBOL).append(Constant.A_SPACE);
-                }
+                appendCellText(builder, i, j);
             }
             builder.append(Constant.NEW_LINE);
         }
 
         System.out.println(builder);
+    }
+
+    private void appendCellText(StringBuilder builder, int row, int col) {
+        if (isNotMineCell(row, col)) {
+            builder.append(map[row][col]).append(Constant.A_SPACE);
+        }
+
+        if (isMineCell(row, col)){
+            builder.append(Constant.MINE_SYMBOL).append(Constant.A_SPACE);
+        }
     }
 
     private boolean isNotMapBoundary(int row, int col) {
