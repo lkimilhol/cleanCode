@@ -5,12 +5,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class MineSweeperMapTest {
-	MineSweeperMap mineSweeperMap;
+class GameTest {
+	Game game;
 
 	@BeforeEach
 	void beforeEach() {
-		mineSweeperMap = new MineSweeperMap();
+		game = new Game();
 	}
 
 	@Test
@@ -18,7 +18,7 @@ class MineSweeperMapTest {
 	void createMap() {
 	    //given
 	    //when
-		int[][] map = mineSweeperMap.getMap();
+		int[][] map = game.getMap();
 	    //then
 		Assertions.assertEquals(Common.WIDTH, map.length);
 		Assertions.assertEquals(Common.HEIGHT, map[0].length);
@@ -29,8 +29,17 @@ class MineSweeperMapTest {
 	void checkMapValue() {
 	    //given
 	    //when
-		int[][] map = mineSweeperMap.getMap();
+		int[][] map = game.getMap();
 	    //then
 		Assertions.assertEquals(0, map[0][0]);
+	}
+
+	@Test
+	@DisplayName("지뢰 주변의 값을 1씩 증가시키는 로직")
+	void progressMine() {
+		//given
+		//when
+		game.generateAnswer();
+		//then
 	}
 }
