@@ -2,6 +2,7 @@ package mineSweeper;
 
 public class Game {
 	private final int[][] map;
+	private final String MINE = "*";
 	private final Mines mines;
 
 	public Game() {
@@ -61,7 +62,7 @@ public class Game {
 
 	private String getMine(int width, int height) {
 		if (mines.isContain(width, height)) {
-			return "*";
+			return MINE;
 		}
 		return Integer.toString(map[width][height]);
 	}
