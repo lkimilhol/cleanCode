@@ -20,8 +20,8 @@ class MineSweeperMapTest {
 	    //when
 		int[][] map = mineSweeperMap.getMap();
 	    //then
-		Assertions.assertEquals(MineSweeperMap.WIDTH, map.length);
-		Assertions.assertEquals(MineSweeperMap.HEIGHT, map[0].length);
+		Assertions.assertEquals(Common.WIDTH, map.length);
+		Assertions.assertEquals(Common.HEIGHT, map[0].length);
 	}
 
 	@Test
