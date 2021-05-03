@@ -1,8 +1,8 @@
 package mineSweeper;
 
 public class Mine {
-	int width;
-	int height;
+	private final int width;
+	private final int height;
 
 	public Mine(int width, int height) {
 		checkValidRange(width, height);
