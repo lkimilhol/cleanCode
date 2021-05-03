@@ -12,6 +12,10 @@ public class Mines {
 		mineSet = new HashSet<>();
 	}
 
+	public Set<Mine> getMineSet() {
+		return mineSet;
+	}
+
 	public void createMine() {
 		while (mineSet.size() < MINE_COUNT) {
 			Mine mine = new Mine(generateMineRandom(Common.WIDTH), generateMineRandom(Common.HEIGHT));
@@ -32,6 +36,15 @@ public class Mines {
 
 	protected boolean isContain (Mine mine) {
 		return mineSet.stream().anyMatch(addedMine -> equals(addedMine, mine));
+	}
+
+	protected boolean isContain(int width, int height) {
+		return mineSet.stream().anyMatch(addedMine -> equals(addedMine, width, height));
+	}
+
+	private boolean equals(Mine addedMine, int width, int height) {
+		return addedMine.getWidth() == width
+			&& addedMine.getHeight() == height;
 	}
 
 	private boolean equals(Mine addedMine, Mine newMine) {

@@ -1,8 +1,8 @@
 package mineSweeper;
 
 public class Game {
-	private int[][] map;
-	private Mines mines;
+	private final int[][] map;
+	private final Mines mines;
 
 	public Game() {
 		map = new int[Common.WIDTH][Common.HEIGHT];
@@ -34,7 +34,7 @@ public class Game {
 	}
 
 	private void increaseMineRound(int width, int height) {
-		if (isRange(width, height)) {
+		if (isRange(width, height) && !mines.isContain(width, height)) {
 			increaseAnswer(width, height);
 		}
 	}
@@ -49,13 +49,20 @@ public class Game {
 
 	public void printAnswer() {
 		StringBuilder stringBuilder = new StringBuilder();
-		for (int[] height : map) {
-			for (int value : height) {
-				stringBuilder.append(value);
+		for (int i = 0; i < Common.WIDTH; i++) {
+			for (int j = 0; j < Common.HEIGHT; j++) {
+				stringBuilder.append(getMine(i, j));
 				stringBuilder.append("\t");
 			}
 			stringBuilder.append("\n");
 		}
 		System.out.println(stringBuilder);
+	}
+
+	private String getMine(int width, int height) {
+		if (mines.isContain(width, height)) {
+			return "*";
+		}
+		return Integer.toString(map[width][height]);
 	}
 }

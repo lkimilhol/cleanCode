@@ -17,7 +17,7 @@ public class Mine {
 	}
 
 	private boolean isInvalidRange(int width, int height) {
-		return width < 0 || height < 0 || width > Common.WIDTH || height > Common.HEIGHT;
+		return width < 0 || height < 0 || width >= Common.WIDTH || height >= Common.HEIGHT;
 	}
 
 	public int getWidth() {
